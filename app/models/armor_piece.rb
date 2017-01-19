@@ -1,0 +1,2 @@
+class ArmorPiece < ApplicationRecord
+end
