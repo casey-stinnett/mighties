@@ -6,7 +6,37 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
   %body
-    %p.notice= notice
-    %p.alert= alert
+    %nav
+      .nav-wrapper.row
+        .col.s12.m4.l2
+          %a.brand-logo(href="#{root_path}")
+            %i.material-icons cloud
+            Mighties
+        - if user_signed_in?
+          .col.s12.m4.l8
+            = form_tag '/search' do
+              .input-field
+                = text_field_tag :find_friends, nil, id: 'search'
+                %label(for="search")
+                  %i.material-icons search
+                %i.material-icons close
+          .col.s12.m4.l2
+            %ul.right.hide-on-med-and-down
+              %li
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete
+              %li
+                = link_to 'Settings', edit_user_registration_path
+        - else
+          %ul.right.hide-on-med-and-down
+            %li
+              = link_to 'Sign In', new_user_session_path
+            %li
+              = link_to 'Create Account', new_user_registration_path
+    - if notice
+      %p.notice= notice
+    - if alert
+      %p.alert= alert
+
     = yield

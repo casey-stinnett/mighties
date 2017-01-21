@@ -9,13 +9,12 @@ gem 'devise'
 gem 'paperclip'
 gem 'haml'
 gem 'haml-rails'
-gem 'better_errors'
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
+gem 'materialize-sass'
 gem 'cancancan'
 gem 'swearjar'
-gem 'jquery_mask_rails'
 gem 'restful_routing', group: :development
-gem 'tether-rails'
-gem 'binding_of_caller', group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
