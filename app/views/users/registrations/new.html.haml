@@ -1,31 +1,28 @@
 %h2 Sign up
-.container
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+.row
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'col s12'}) do |f|
     = devise_error_messages!
-    .form-group.row
-      = f.label :first_name, class: 'col-2 col-form-label'
-      .col-10
-        = f.text_field :first_name, autofocus: true, class: 'form-control'
-    .form-group.row
-      = f.label :last_name, class: 'col-2 col-form-label'
-      .col-10
-        = f.text_field :last_name, class: 'form-control'
-    .form-group.row
-      = f.label :gender, class: 'col-2 col-form-label'
-      .col-10
-        = f.select :gender, ['Male', 'Female'], {}, class: 'form-control'
-    .form-group.row
-      = f.label :birthday, class: 'col-2 col-form-label'
-      .col-10
-        = f.text_field :birthday, type: 'date', class: 'form-control'
-    .form-group.row
-      = f.label :email, class: 'col-2 col-form-label'
-      .col-10
-        = f.email_field :email, class: 'form-control'
-    .form-group.row
-      = f.label :password, class: 'col-2 col-form-label'
-      .col-10
-        = f.password_field :password, autocomplete: "off", class: 'form-control'
+    .row
+      .input-field.col.s6
+        = f.text_field :first_name, class: 'validate'
+        %label(for="user[first_name]") First Name
+      .input-field.col.s6
+        = f.text_field :last_name, class: 'validate'
+        %label(for="user[last_name]") Last Name
+    .row
+      .input-field.col.s6
+        - puts "THE PATH: #{asset_path('gold.jpg')}"
+        = f.select :gender, [['Male', {class: 'circle', "data-icon": "#{asset_path('gold.jpg')}"}], ['Female', {class: 'circle', "data-icon": "#{asset_path('gold.jpg')}"}]], {}, class: 'icons'
+      .input-field.col.s6
+        %label(for="user[birthday]") Birthday
+        = f.date_field :birthday, class: 'datepicker'
+    .row
+      .input-field.col.s6
+        = f.email_field :email, class: 'validate'
+        %label(for="user[email]" data-error="Not a Real Email" data-success="Right") Email
+      .input-field.col.s6
+        = f.password_field :password, autocomplete: 'off', class: 'validate'
+        %label(for="user[password]") Password
       - if @minimum_password_length
         %em
           (#{@minimum_password_length} characters minimum)
